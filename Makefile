@@ -1,31 +1,40 @@
 
 
-IDIR = include
+INCLUDE_DIR = include
+OBJ_DIR 	= obj
+LIBRARY_DIR = ../lib
 
 CC=g++
-CFLAGS=-I$(IDIR)
+CCFLAGS=-I$(INCLUDE_DIR) -g -Wall -Wextra -Werror
+LDFLAGS=-lm -lncurses
 
-ODIR=obj
-LDIR=../lib
+# DEPS == Dependências
+_DEPS=defs.h 
+#! patsubst pega cada palavra de _DEPS
+#! separa por "espaco em branco"  e 
+#! concatena com o conteúdo de INCLUDE_DIR
+DEPS=$(patsubst %,$(INCLUDE_DIR)/%,$(_DEPS))
+# $(info    DEPS is = $(DEPS))
 
-LIBS=-lm -lncurses
-
-_DEPS=defs.h
-DEPS=$(patsubst %,$(IDIR)/%,$(_DEPS))
-
+# OBJ == Objects (arquivos .o)
 _OBJ=main.o
-OBJ=$(patsubst %,$(ODIR)/%,$(_OBJ))
+#! patsubst pega cada palavra de _OBJ
+#! separa por "espaco em branco"  e 
+#! concatena com o conteúdo de OBJ_DIR
+OBJ=$(patsubst %,$(OBJ_DIR)/%,$(_OBJ))
+# $(info    OBJ is = $(OBJ))
 
-$(ODIR)/%.o: %.cpp $(DEPS)
-	$(CC) -c -o $@ $< $(CFLAGS)
+$(OBJ_DIR)/%.o: %.cpp $(DEPS)
+	$(CC) -c -o $@ $< $(CCFLAGS)
 
 all: $(OBJ)
-	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
+	$(CC) -o $@ $^ $(CCFLAGS) $(LDFLAGS)
 
 .PHONY: clean
 
 clean:
-	-rm -f $(ODIR)/*.o *- core $(INCDIR)/*-
+	-rm -f $(OBJ_DIR)/*.o *- core $(INCLUDE_DIR)/*-
+	-rm all
 
 run: all
 	./all
