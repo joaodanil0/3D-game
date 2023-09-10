@@ -10,14 +10,7 @@ Vector3::Vector3(const Vector3 &vect)
 {
 }
 
-Vector3 &Vector3::operator=(const Vector3 &vect)
-{
-    // TODO: insert return statement here
-    this->x = vect.x;
-    this->y = vect.y;
-    this->z = vect.z;
-    return *this;
-}
+
 
 Vector3::~Vector3()
 {
@@ -63,6 +56,52 @@ void Vector3::cross(const Vector3 &one, const Vector3 &two, Vector3 &dest)
 float Vector3::dot(const Vector3 &a, const Vector3 &b)
 {
     return ( (a.x * b.x) + (a.y * b.y) + (a.z * b.z) );
+}
+
+Vector3 &Vector3::operator=(const Vector3 &vect)
+{
+    // TODO: insert return statement here
+    this->x = vect.x;
+    this->y = vect.y;
+    this->z = vect.z;
+    return *this;
+}
+
+Vector3& Vector3::operator%=(const Vector3& right){
+    Vector3::cross(*this, right, *this);
+    return *this;
+}
+
+Vector3& Vector3::operator+=(const Vector3& right){
+    Vector3::add(*this, right, *this);
+    return *this;
+}
+
+Vector3& Vector3::operator-=(const Vector3& right){
+    Vector3::sub(*this, right, *this);
+    return *this;
+}
+
+Vector3 Vector3::operator+(const Vector3& right){
+    Vector3 ret;
+    Vector3::add(*this, right, ret);
+    return ret;
+}
+
+Vector3 Vector3::operator-(const Vector3& right){
+    Vector3 ret;
+    Vector3::sub(*this, right, ret);
+    return ret;
+}
+
+Vector3 Vector3::operator%(const Vector3& right){
+    Vector3 ret;
+    Vector3::cross(*this, right, ret);
+    return ret;
+}
+
+float Vector3::operator*(const Vector3& b){
+    return Vector3::dot(*this, b);
 }
 
 float Vector3::dist(const Vector3 &a, const Vector3 &b)

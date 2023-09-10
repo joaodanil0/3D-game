@@ -13,7 +13,6 @@ class Vector4
     public:
         Vector4(float x = 0, float y = 0, float z = 0, float w = 0);
         Vector4(const Vector4 &vect);
-        Vector4 &operator = (const Vector4 &vect);
         virtual ~Vector4();
 
         float length() const;
@@ -21,6 +20,13 @@ class Vector4
         static void add(const Vector4 &left, const Vector4 &right, Vector4 &dest);
         static void sub(const Vector4 &left, const Vector4 &right, Vector4 &dest);
         static void mul(const Vector4 &left, const Vector4 &right, Vector4 &dest);
+        
+        Vector4 &operator = (const Vector4 &vect);
+        Vector4 &operator+=(const Vector4& right);
+		Vector4 &operator-=(const Vector4& right);
+		Vector4 operator+(const Vector4& right);
+		Vector4 operator-(const Vector4& right);
+		float operator*(const Vector4& b);
 
         static float dot(const Vector4 &a, const Vector4 &b);
         static float dist(const Vector4 &a, const Vector4 &b);

@@ -13,7 +13,7 @@ class Vector2
     public:
         Vector2(float x = 0, float y = 0);
         Vector2(const Vector2 &vect);
-        Vector2 &operator = (const Vector2 &vect);
+        
         virtual ~Vector2();
 
         float length() const;
@@ -23,6 +23,13 @@ class Vector2
         static void mul(const Vector2 &left, const Vector2 &right, Vector2 &dest);
         static void lerp(const Vector2 &a, const Vector2 &b, float t, Vector2 &dest);
 
+        Vector2 &operator=  (const Vector2 &vect);
+        Vector2 &operator+= (const Vector2 &right);
+        Vector2 &operator-= (const Vector2 &right);
+        Vector2 operator+   (const Vector2 &right);
+        Vector2 operator-   (const Vector2 &right);
+        float operator*     (const Vector2 &right);
+        
         static float dot(const Vector2 &a, const Vector2 &b);
         static float dist(const Vector2 &a, const Vector2 &b);
         static float angle(const Vector2 &a, const Vector2 &b);

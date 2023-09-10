@@ -65,6 +65,45 @@ void Matrix22::trans(const Matrix22 &left, const Vector2 &right, Vector2 &dest)
     dest.y = y;
 }
 
+Matrix22& Matrix22::operator+=(const Matrix22& right){
+    Matrix22::add(*this, right, *this);
+    return *this;
+}
+
+Matrix22& Matrix22::operator-=(const Matrix22& right){
+    Matrix22::sub(*this, right, *this);
+    return *this;
+}
+
+Matrix22& Matrix22::operator*=(const Matrix22& right){
+    Matrix22::mul(*this, right, *this);
+    return *this;
+}
+
+Matrix22 Matrix22::operator+(const Matrix22& right){
+    Matrix22 ret;
+    Matrix22::add(*this, right, ret);
+    return ret;
+}
+
+Matrix22 Matrix22::operator-(const Matrix22& right){
+    Matrix22 ret;
+    Matrix22::sub(*this, right, ret);
+    return ret;
+}
+
+Matrix22 Matrix22::operator*(const Matrix22& right){
+    Matrix22 ret;
+    Matrix22::mul(*this, right, ret);
+    return ret;
+}
+
+Vector2 Matrix22::operator*(const Vector2& vec){
+    Vector2 ret;
+    Matrix22::trans(*this, vec, ret);
+    return ret;
+}
+
 void Matrix22::setIdentity()
 {
     this->m00 = 1;

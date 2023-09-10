@@ -10,16 +10,6 @@ Vector4::Vector4(const Vector4 &vect)
 {
 }
 
-Vector4 &Vector4::operator=(const Vector4 &vect)
-{
-    // TODO: insert return statement here
-    this->x = vect.x;
-    this->y = vect.y;
-    this->z = vect.z;
-    this->w = vect.w;
-    return *this;
-}
-
 Vector4::~Vector4()
 {
 }
@@ -62,6 +52,43 @@ float Vector4::dot(const Vector4 &a, const Vector4 &b)
 {
     return ( (a.x * b.x) + (a.y * b.y) + (a.z * b.z)  + (a.w * b.w) );
 }
+
+Vector4 &Vector4::operator=(const Vector4 &vect)
+{
+    // TODO: insert return statement here
+    this->x = vect.x;
+    this->y = vect.y;
+    this->z = vect.z;
+    this->w = vect.w;
+    return *this;
+}
+
+Vector4& Vector4::operator+=(const Vector4& right){
+    Vector4::add(*this, right, *this);
+    return *this;
+}
+
+Vector4& Vector4::operator-=(const Vector4& right){
+    Vector4::sub(*this, right, *this);
+    return *this;
+}
+
+Vector4 Vector4::operator+(const Vector4& right){
+    Vector4 ret;
+    Vector4::add(*this, right, *this);
+    return ret;
+}
+
+Vector4 Vector4::operator-(const Vector4& right){
+    Vector4 ret;
+    Vector4::sub(*this, right, *this);
+    return ret;
+}
+
+float Vector4::operator*(const Vector4& b){
+    return Vector4::dot(*this, b);
+}
+
 
 float Vector4::dist(const Vector4 &a, const Vector4 &b)
 {   

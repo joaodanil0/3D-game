@@ -34,6 +34,14 @@ class Matrix44
         static void mul(const Matrix44 &left, const Matrix44 &right, Matrix44 &dest);
         static void trans(const Matrix44 &left, const Vector4 &right, Vector4 &dest);
 
+        Matrix44& operator+=(const Matrix44& right);
+        Matrix44& operator-=(const Matrix44& right);
+        Matrix44& operator*=(const Matrix44& right);
+        Matrix44 operator+(const Matrix44& right);
+        Matrix44 operator-(const Matrix44& right);
+        Matrix44 operator*(const Matrix44& right);
+        Vector4 operator*(const Vector4& vec);
+
         void setIdentity();
         void setZero();
         void transpose();

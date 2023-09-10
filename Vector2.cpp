@@ -10,14 +10,6 @@ Vector2::Vector2(const Vector2 &vect)
 {
 }
 
-Vector2 &Vector2::operator=(const Vector2 &vect)
-{
-    // TODO: insert return statement here
-    this->x = vect.x;
-    this->y = vect.y;
-    return *this;
-}
-
 Vector2::~Vector2()
 {
 }
@@ -52,8 +44,41 @@ void Vector2::lerp(const Vector2 &a, const Vector2 &b, float t, Vector2 &dest)
 {
     dest.x = a.x + ( (b.x - a.x) * t);
     dest.y = a.y + ( (b.y - a.y) * t);
-
 }
+
+Vector2 &Vector2::operator=(const Vector2 &vect)
+{
+    this->x = vect.x;
+    this->y = vect.y;
+    return *this;
+}
+
+Vector2& Vector2::operator+=(const Vector2& right){
+    Vector2::add(*this, right, *this);
+    return *this;
+}
+
+Vector2& Vector2::operator-=(const Vector2& right){
+    Vector2::sub(*this, right, *this);
+    return *this;
+}
+
+Vector2 Vector2::operator+(const Vector2& right){
+    Vector2 ret;
+    Vector2::add(*this, right, ret);
+    return ret;
+}
+
+Vector2 Vector2::operator-(const Vector2& right){
+    Vector2 ret;
+    Vector2::sub(*this, right, ret);
+    return ret;
+}
+
+float Vector2::operator*(const Vector2& b){
+    return Vector2::dot(*this, b);
+}
+
 
 float Vector2::dot(const Vector2 &a, const Vector2 &b)
 {
