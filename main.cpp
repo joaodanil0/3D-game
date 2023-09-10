@@ -4,7 +4,13 @@
 
 int main(){
 
-    std::cout << "Hello World!" << std::endl;
+    initscr();
+    raw();
+    noecho();
 
+    printw("Hello World Ncurses!");
+    getch();
+
+    endwin();
     return 0;
 }

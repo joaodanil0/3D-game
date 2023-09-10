@@ -25,10 +25,10 @@ OBJ=$(patsubst %,$(OBJ_DIR)/%,$(_OBJ))
 # $(info    OBJ is = $(OBJ))
 
 $(OBJ_DIR)/%.o: %.cpp $(DEPS)
-	$(CC) -c -o $@ $< $(CCFLAGS)
+	@$(CC) -c -o $@ $< $(CCFLAGS)
 
 all: $(OBJ)
-	$(CC) -o $@ $^ $(CCFLAGS) $(LDFLAGS)
+	@$(CC) -o $@ $^ $(CCFLAGS) $(LDFLAGS)
 
 .PHONY: clean
 
@@ -37,4 +37,4 @@ clean:
 	-rm all
 
 run: all
-	./all
+	@./all
