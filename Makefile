@@ -1,7 +1,6 @@
 
 
 INCLUDE_DIR = include
-SRC_DIR = src
 OBJ_DIR 	= obj
 LIBRARY_DIR = ../lib
 
@@ -10,14 +9,14 @@ CCFLAGS=-I$(INCLUDE_DIR) -g -Wall -Wextra -Werror
 LDFLAGS=-lm -lncurses
 
 # DEPS == Dependências
-_DEPS=defs.h Vector2.h Vector3.h Vector4.h
+_DEPS=defs.h Vector2.h Vector3.h Vector4.h Matrix22.h Matrix33.h Matrix44.h
 #! patsubst pega cada palavra de _DEPS
 #! separa por "espaco em branco"  e 
 #! concatena com o conteúdo de INCLUDE_DIR
 DEPS=$(patsubst %,$(INCLUDE_DIR)/%,$(_DEPS))
 # $(info    DEPS is = $(DEPS))
 
-_OBJ=main.o Vector2.o Vector3.o Vector4.o
+_OBJ=main.o Vector2.o Vector3.o Vector4.o Matrix22.o Matrix33.o Matrix44.o
 #! patsubst pega cada palavra de _OBJ
 #! separa por "espaco em branco"  e 
 #! concatena com o conteúdo de OBJ_DIR
